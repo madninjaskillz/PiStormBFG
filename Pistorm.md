@@ -84,6 +84,9 @@ Once writing is complete, place the SD in the Raspberry Pi
 ![Raspberry Pi Imaging Software](PiImager_05.png)
 
 The Pi should now boot into Linux. 
+
+#### Setting up wifi and remote access
+
 Once it has booted, log in with the default username and password:
 
 ```
@@ -125,6 +128,39 @@ Select `Yes`
 Exit raspi-config and reboot when it asks you to.
 In theory, from this point on you should be able to ssh in to the pi and do everything remotely.
 You should be able to get the IP from the pi; log in and run either `ip addr` or `ifconfig` and look for the ip under wlan0.
+
+#### Installing the PiStorm software
+
+On your PC, open a terminal window and type 
+`ssh pi@ipaddress`
+replacing "ipaddress" with the address of your pi.
+![PC terminal](terminal_01.png)
+
+If ssh asks you about a fingerprint, type `yes` and press enter.
+
+Type the pi's password (`raspberry` by default) when requested.
+
+Run the following commands (saying `y`es where required):
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git libsdl2-dev
+git clone https://github.com/captain-amygdala/pistorm.git pistorm
+cd pistorm
+make
+```
+
+Expect `sudo apt-get upgrade` and `make` to take a while.
+
+
+
+
+
+#### Setting up RTG
+
+Type `lsb_release -d` to find out which version of Debian you are running.
+
 
 
 
